@@ -24,7 +24,9 @@ Interactive Dashboards & Drill‑through Analytics
 
 The solution follows a modern data engineering workflow: Data Source: Formula 1 World Championship data fetched dynamically from Kaggle via API. Data Lakehouse (Databricks): Bronze Layer: Raw data ingestion into Delta Lake. Silver Layer: Data cleaning, schema enforcement, and standardization. Gold Layer: Business-level aggregations and star-schema modeling. Analytics Layer (Power BI): Interactive dashboard connecting to the Gold layer for "Performance Intelligence."
 
-## The data engineering pipeline is built using PySpark on Databricks, utilizing Unity Catalog for governance and Delta Lake for storage reliability.
+The data engineering pipeline is built using PySpark on Databricks, utilizing Unity Catalog for governance and Delta Lake for storage reliability.
+
+---
 
 # Data Ingestion (Bronze Layer)
 
@@ -109,44 +111,6 @@ All business logic is centralized in a dedicated measures table, including:
 
 ---
 
-## Dashboard Pages
-
-## Screenshots
-
-Below are screenshots of each Power BI page (stored under the `screenshot/` folder) to provide a quick visual walkthrough of the analytical experience.
-
-### Page 1 — Executive Overview
-
-High-level season summary combining results, reliability, and operations.
-
-![Executive Overview](screenshots/page_1.png)
-
-### Page 2 — Driver Performance Deep Dive
-
-Driver-centric diagnostics of racecraft (grid vs finish), pace trends, and consistency.
-
-![Driver Performance Deep Dive](screenshots/page_2.png)
-
-### Page 3 — Constructor & Strategy
-
-Team-level view of pit strategy, reliability (DNFs), and circuit-country performance patterns.
-
-![Constructor & Strategy](screenshots/page_3.png)
-
-### Page 4 — Race & Circuit Intelligence
-
-Circuit-level pace and risk profiling (DNF rate, pace benchmarks, pit sensitivity).
-
-![Race & Circuit Intelligence](screenshost/page_4.png)
-
-### Page 5 — Model View (Star Schema)
-
-Semantic model showing the star schema relationships between dimensions and fact tables.
-
-![Model View](screenshots/page_5.png)
-
----
-
 ### 1. Executive Overview
 
 High‑level season summary combining sporting results and operational efficiency.
@@ -160,7 +124,7 @@ High‑level season summary combining sporting results and operational efficienc
 
 **Purpose:** explain *who dominates the season and why*.
 
-![Executive Overview](page_1.png)
+![Executive Overview](screenshots/page_1.png)
 
 ---
 
@@ -178,7 +142,7 @@ Driver‑centric diagnostics of racecraft, consistency, and pace.
 
 **Purpose:** decompose driver performance beyond total points.
 
-![Driver Performance Deep Dive](page_2.png)
+![Driver Performance Deep Dive](screenshots/page_2.png)
 
 ---
 
@@ -195,7 +159,7 @@ Team‑level operational efficiency and reliability analysis.
 
 **Purpose:** evaluate how strategy execution and reliability affect championship outcomes.
 
-![Constructor & Strategy](page_3.png)
+![Constructor & Strategy](screenshots/page_3.png)
 
 ---
 
@@ -212,7 +176,7 @@ Circuit‑level pace and risk profiling.
 
 **Purpose:** identify high‑risk and high‑sensitivity circuits for strategic planning.
 
-![Race & Circuit Intelligence](page_4.png)
+![Race & Circuit Intelligence](screenshots/page_4.png)
 
 ---
 
@@ -222,7 +186,7 @@ A view of the Power BI semantic model showing the star schema relationships betw
 
 **Purpose:** demonstrate a production-style semantic layer with clear filtering paths and reusable measures.
 
-![Model View](screenshot/page_5.png)
+![Model View](screenshots/page_5.png)
 
 ---
 
@@ -263,4 +227,4 @@ The dataset is based on publicly available Formula 1 historical data retrieved v
 
 ---
 
-*Part of the F1 Big Data Analytics Project: From Ingestion to Intelligence.*
+https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020
