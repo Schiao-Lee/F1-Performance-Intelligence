@@ -1,6 +1,5 @@
 # F1 Data Analytics Project: From Ingestion to Intelligence
 
-This folder contains the Power BI analytics layer of the project **“F1 Big Data Analytics: From Ingestion to Intelligence.”**
 This project is an end-to-end data analytics solution that processes historical Formula 1 data (1950–2024) to generate actionable performance insights. It leverages Databricks for a scalable ETL pipeline (following the Medallion Architecture) and Power BI for advanced visualization and analytics.
 
 
