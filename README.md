@@ -1,11 +1,8 @@
-# F1 Big Data Analytics Project – Power BI Dashboard
+# F1 Data Analytics Project: From Ingestion to Intelligence
 
 This folder contains the Power BI analytics layer of the project **“F1 Big Data Analytics: From Ingestion to Intelligence.”**
-It transforms curated Formula 1 data (1950–2024) from the Databricks Gold layer into an interactive, production‑style performance intelligence system.
+This project is an end-to-end data analytics solution that processes historical Formula 1 data (1950–2024) to generate actionable performance insights. It leverages Databricks for a scalable ETL pipeline (following the Medallion Architecture) and Power BI for advanced visualization and analytics.
 
-The dashboard is designed not as a static report, but as a multi‑level analytical product supporting executive monitoring, driver evaluation, team strategy analysis, circuit risk profiling, and lap‑by‑lap diagnostics.
-
----
 
 ## System Context
 
@@ -22,6 +19,29 @@ Interactive Dashboards & Drill‑through Analytics
 ```
 
 ---
+
+## Architecture Overview
+
+The solution follows a modern data engineering workflow: Data Source: Formula 1 World Championship data fetched dynamically from Kaggle via API. Data Lakehouse (Databricks): Bronze Layer: Raw data ingestion into Delta Lake. Silver Layer: Data cleaning, schema enforcement, and standardization. Gold Layer: Business-level aggregations and star-schema modeling. Analytics Layer (Power BI): Interactive dashboard connecting to the Gold layer for "Performance Intelligence."
+
+## The data engineering pipeline is built using PySpark on Databricks, utilizing Unity Catalog for governance and Delta Lake for storage reliability.
+
+# Data Ingestion (Bronze Layer)
+
+Automated Extraction: Utilizes kagglehub to download the latest F1 dataset directly into Databricks Unity Catalog Volumes, bypassing local driver storage for security and scalability. Raw Storage: Reads 14+ CSV files (Circuits, Races, Drivers, Constructors, Lap Times, etc.) and ingests them into Managed Delta Tables. Metadata Management: All raw tables are cataloged under the Bronze schema in Unity Catalog.
+
+# Data Transformation (Silver Layer)
+
+Handling \N values as standard NULL. Dropping irrelevant URL columns to optimize storage. Standardizing column names (Snake case, removing spaces). Schema Enforcement: Explicitly casting columns to correct data types (Integer, Double, Date, Timestamp) to ensure data quality. Date Engineering: Transformation of string dates into timestamp objects for time-series analysis.
+
+# Business Logic & Aggregation (Gold Layer)
+
+Star Schema Preparation: Joining normalized tables (e.g., Races + Circuits, Drivers + Results) to create rich dimension and fact tables.
+
+---
+
+### Power BI Dashboard 
+
 
 ## Data Model (Semantic Layer)
 
@@ -90,6 +110,42 @@ All business logic is centralized in a dedicated measures table, including:
 ---
 
 ## Dashboard Pages
+
+## Screenshots
+
+Below are screenshots of each Power BI page (stored under the `screenshot/` folder) to provide a quick visual walkthrough of the analytical experience.
+
+### Page 1 — Executive Overview
+
+High-level season summary combining results, reliability, and operations.
+
+![Executive Overview](screenshots/page_1.png)
+
+### Page 2 — Driver Performance Deep Dive
+
+Driver-centric diagnostics of racecraft (grid vs finish), pace trends, and consistency.
+
+![Driver Performance Deep Dive](screenshots/page_2.png)
+
+### Page 3 — Constructor & Strategy
+
+Team-level view of pit strategy, reliability (DNFs), and circuit-country performance patterns.
+
+![Constructor & Strategy](screenshots/page_3.png)
+
+### Page 4 — Race & Circuit Intelligence
+
+Circuit-level pace and risk profiling (DNF rate, pace benchmarks, pit sensitivity).
+
+![Race & Circuit Intelligence](screenshost/page_4.png)
+
+### Page 5 — Model View (Star Schema)
+
+Semantic model showing the star schema relationships between dimensions and fact tables.
+
+![Model View](screenshots/page_5.png)
+
+---
 
 ### 1. Executive Overview
 
@@ -160,18 +216,26 @@ Circuit‑level pace and risk profiling.
 
 ---
 
-### 5. Drill‑through: Race Detail (Lap‑by‑Lap)
+### 5. Model View (Star Schema)
 
-Interactive diagnostic page accessible via right‑click drill‑through from any aggregated view.
+A view of the Power BI semantic model showing the star schema relationships between dimensions and fact tables.
+
+**Purpose:** demonstrate a production-style semantic layer with clear filtering paths and reusable measures.
+
+![Model View](screenshot/page_5.png)
+
+---
+
+### Drill-through: Race Detail (Lap-by-Lap)
+
+Interactive diagnostic workflow accessible via right-click drill-through from any aggregated view.
 
 **Key visuals:**
 
-* Lap‑by‑lap pace evolution line chart
+* Lap-by-lap pace evolution line chart
 * Pit stop details table
 
-**Purpose:** connect executive‑level KPIs to telemetry‑level root cause analysis.
-
-![Race Detail – Lap by Lap](page_5.png)
+**Purpose:** connect executive-level KPIs to telemetry-level root cause analysis.
 
 ---
 
